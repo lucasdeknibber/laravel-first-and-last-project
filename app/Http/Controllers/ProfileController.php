@@ -31,8 +31,14 @@ class ProfileController extends Controller
 
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
+            // Store the profile picture and update the database field
             $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
             $data['profile_picture'] = $profilePicturePath;
+
+            // Optionally delete the old profile picture file if it exists
+            if ($user->profile_picture) {
+                \Storage::disk('public')->delete($user->profile_picture);
+            }
         }
 
         $user->fill($data);

@@ -16,8 +16,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('birthday')->nullable();
-            $table->string('avatar')->nullable();
             $table->text('bio')->nullable();
+            $table->boolean('is_admin')->default(false);
+            $table->string('avatar')->nullable(); // Add profile picture column
             $table->rememberToken();
             $table->timestamps();
         });
@@ -28,4 +29,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
-?> 
+?>
