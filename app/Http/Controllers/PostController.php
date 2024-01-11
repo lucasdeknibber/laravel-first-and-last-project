@@ -8,7 +8,7 @@ use Auth;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::OrderBy('created_at', 'desc')->get();
+        $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }
     public function create(){
