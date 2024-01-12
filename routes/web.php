@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 Route::get('/user/{user}', [UserProfileController::class, 'show'])->name('user.profile');
 Route::post('/user/{user}/promote', [UserProfileController::class, 'promote'])->name('promote.to.admin');
