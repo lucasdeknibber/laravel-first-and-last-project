@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,14 +31,14 @@ class ProfileController extends Controller
         $data = $request->validated();
 
         // Handle profile picture upload
-        if ($request->hasFile('profile_picture')) {
+        if ($request->hasFile('avatar')) {
             // Store the profile picture and update the database field
-            $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $data['profile_picture'] = $profilePicturePath;
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $avatarPath;
 
             // Optionally delete the old profile picture file if it exists
-            if ($user->profile_picture) {
-                \Storage::disk('public')->delete($user->profile_picture);
+            if ($user->avatar) {
+                \Storage::disk('public')->delete($user->avatar);
             }
         }
 
@@ -66,8 +67,14 @@ class ProfileController extends Controller
         Auth::logout();
 
         // Optionally delete the profile picture file if it exists
-        if ($user->profile_picture) {
-            \Storage::disk('public')->delete($user->profile_picture);
+        if ($user->avatar) {
+            \Storage::disk('public')->delete($user->avatar);
+        }
+
+        if (isset($data['birthday'])) {
+            // Parse the date in the expected format 'd-m-Y'
+            $parsedDate = \Carbon\Carbon::createFromFormat('Y-m-d', $data['birthday']);
+            $data['birthday'] = $parsedDate->format('Y-m-d');
         }
 
         $user->delete();

@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -46,6 +46,29 @@
                 </div>
             @endif
         </div>
+
+        <!-- New Fields for Bio, Avatar, and Birthdate -->
+        <div>
+            <x-input-label for="bio" :value="__('Bio')" />
+            <x-text-input id="bio" name="bio" :value="old('bio', $user->bio)" />
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
+
+        <div>
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <input id="avatar" name="avatar" type="file" accept="image/*" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
+
+        <div>
+            <x-input-label for="birthday" :value="__('Birthday')" />
+            <x-date-input id="birthday" name="birthday" :value="old('birthday', optional($user->birthday)->format('Y-m-d'))" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+        </div>
+
+
+        <!-- End of New Fields -->
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
