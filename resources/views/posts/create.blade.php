@@ -21,7 +21,7 @@
                             required autocomplete="current-message" />
             <x-input-error :messages="$errors->get('message')" class="mt-2" />
         </div>
-
+        
         <!-- Login Button -->
         <div class="flex items-center justify-end">
             <x-primary-button>

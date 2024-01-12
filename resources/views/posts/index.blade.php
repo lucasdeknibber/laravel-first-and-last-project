@@ -14,13 +14,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    @auth
-                    @if (Auth::user()->is_admin == '1')
+                    @if(Auth::check() && Auth::user()->is_admin)
                     <div class="flex justify-between">
                         <b><a href="{{ route('posts.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create post</a></b>
                     </div>
                     @endif
-                    @endauth
                     @foreach ($posts as $post)
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -31,8 +29,15 @@
                                     {{ $post->message }}
                                 </p>
                                 <small>gepost door {{$post->user->name}} op {{$post->created_at->format('Y/m/d \o\m H:i')}}</small>
-                                @if($post->user_id == Auth::user()->id || Auth::user()->is_admin == '1')
-                                <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                @if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
+                                <div class="flex items-center">
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Delete</button>
+                                    </form>
+                                </div>
                                 @endif
                                 <br><hr>
                             </div>

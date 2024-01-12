@@ -71,6 +71,18 @@ class PostController extends Controller
     
         return redirect()->route('index')->with('status', 'Post updated!');
     }
-        
+     
+    public function destroy($id) {
+        $post = Post::findOrFail($id);
+    
+        // Check if the user can delete the post
+        if ($post->user_id != Auth::user()->id && Auth::user()->is_admin != '1') {
+            return redirect()->route('index')->with('status', 'You can\'t delete this post!');
+        }
+    
+        $post->delete();
+    
+        return redirect()->route('index')->with('status', 'Post deleted!');
+    }
 
 }
