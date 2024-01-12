@@ -31,7 +31,8 @@
                                 <p class="text-gray-700 dark:text-gray-300">
                                     {{ $post->message }}
                                 </p>
-                                <small>gepost door {{ $post->user->name }} op {{ $post->created_at->format('Y/m/d \o\m H:i') }}</small>
+                                <small>gepost door <a href="{{ route('user.profile', $post->user) }}">{{ $post->user->name }}</a> op {{ $post->created_at->format('Y/m/d \o\m H:i') }}</small>
+                                @auth
                                 @if ($post->user_id == Auth::user()->id || Auth::user()->is_admin)
                                 <div class="flex items-center">
                                     <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
@@ -42,6 +43,7 @@
                                     </form>
                                 </div>
                                 @endif
+                                @endauth
                                 <br><hr>
                             </div>
                         </div>
