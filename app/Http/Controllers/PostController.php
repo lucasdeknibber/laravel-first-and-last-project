@@ -21,7 +21,7 @@ class PostController extends Controller
             return view('posts.create');
         }else{
             return redirect()->route('index')->with('status', 'You can\'t create a post!');
-    };
+    }
     }
     public function store(Request $request){
         if (Auth::user()->is_admin != '1') {
@@ -30,6 +30,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'title'         => 'required|min:3',
             'content'       => 'required|min:10',
+            'cover_image'   => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust file type and size as needed
         ])
         ;
 
@@ -37,7 +38,11 @@ class PostController extends Controller
 
         $post->title = $validated['title'];
         $post->message = $validated['content'];
-        $post->user_id = Auth::user()->id;;
+        $post->user_id = Auth::user()->id;
+        if ($request->hasFile('cover_image')) {
+            $coverImagePath = $request->file('cover_image')->store('cover_images', 'public');
+            $post->cover_image = $coverImagePath;
+        }    
         $post->save();
 
         return redirect()->route('index')->with('status', 'Post added!');

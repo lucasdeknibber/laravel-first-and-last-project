@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('message'); // Add body column
             $table->integer('user_id');
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }

@@ -25,11 +25,14 @@
                                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                     {{ $post->title }}
                                 </h2>
+                                @if ($post->cover_image)
+                                    <img src="{{ asset('storage/' . $post->cover_image) }}" alt="Cover Image" class="max-w-full mb-4">
+                                @endif
                                 <p class="text-gray-700 dark:text-gray-300">
                                     {{ $post->message }}
                                 </p>
-                                <small>gepost door {{$post->user->name}} op {{$post->created_at->format('Y/m/d \o\m H:i')}}</small>
-                                @if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
+                                <small>gepost door {{ $post->user->name }} op {{ $post->created_at->format('Y/m/d \o\m H:i') }}</small>
+                                @if ($post->user_id == Auth::user()->id || Auth::user()->is_admin)
                                 <div class="flex items-center">
                                     <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
