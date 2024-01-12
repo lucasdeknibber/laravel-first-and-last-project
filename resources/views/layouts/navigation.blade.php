@@ -15,6 +15,11 @@
                     <x-nav-link :href="url('/posts')" :active="request()->url() == url('/posts')" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                         {{ __('Posts') }}
                     </x-nav-link>
+                    @auth
+                    <x-nav-link :href="url('/contact')" :active="request()->url() == url('/contact')" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        {{ __('Contact') }}
+                    </x-nav-link>
+                    @endauth
                     <x-nav-link :href="url('/about')" :active="request()->url() == url('/about')" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                         {{ __('About') }}
                     </x-nav-link>
