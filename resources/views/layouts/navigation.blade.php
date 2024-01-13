@@ -25,6 +25,9 @@
                     </x-nav-link>
                     @endif
                     @endauth
+                    <x-nav-link :href="url('/faq')" :active="request()->url() == url('/faq')" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        {{ __('Frequently Asked Questions') }}
+                    </x-nav-link>
                     <x-nav-link :href="url('/about')" :active="request()->url() == url('/about')" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                         {{ __('About') }}
                     </x-nav-link>
