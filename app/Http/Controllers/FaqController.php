@@ -21,7 +21,7 @@ class FaqController extends Controller
         return view('faq.index', compact('faqCategories'));
     }
 
-    public function create()
+    public function createCategory()
     {
         return view('faq.create_category');
     }

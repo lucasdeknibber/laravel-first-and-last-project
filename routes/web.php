@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware(['auth'])->group(function () {
     Route::resource('faq', FaqController::class);
-    Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.category.create');
+    Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.create');
     Route::post('/faq/store-category', [FaqController::class, 'storeCategory'])->name('faq.category.store');
     Route::get('faq/category/{category}/edit', [FaqController::class, 'editCategory'])->name('faq.category.edit');
     Route::put('faq/category/{category}', [FaqController::class, 'updateCategory'])->name('faq.category.update');
