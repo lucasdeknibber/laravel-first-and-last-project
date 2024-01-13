@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // routes/web.php
-
-Route::get('/faq', function () {
-    return view('faq');
-})->name('faq');
+Route::get('/faq', [FaqController::class, 'showFAQ'])->name('faq');
 
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 
