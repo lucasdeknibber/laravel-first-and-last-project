@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// routes/web.php
+
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
