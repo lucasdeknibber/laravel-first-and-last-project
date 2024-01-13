@@ -18,7 +18,23 @@
                     </a>
 
                     @foreach($faqCategories as $category)
-                        <h3 class="text-lg font-semibold mb-4">{{ $category->name }}</h3>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold mb-4">{{ $category->name }}</h3>
+                            <div class="space-x-4">
+                                <a href="{{ route('faq.category.edit', $category->id) }}" class="text-blue-500 hover:underline">
+                                    {{ __('Edit Category') }}
+                                </a>
+
+                                <form method="post" action="{{ route('faq.category.destroy', $category->id) }}" class="inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure you want to delete this category?')">
+                                        {{ __('Delete Category') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
                         <ul>
                             @foreach($category->faqItems as $item)
                                 <li>
@@ -27,16 +43,6 @@
                                 </li>
                             @endforeach
                         </ul>
-
-                        <div class="mt-2">
-                            <form method="post" action="{{ route('faq.category.destroy', $category->id) }}" class="inline">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="text-red-500 hover:underline">
-                                    {{ __('Delete Category') }}
-                                </button>
-                            </form>
-                        </div>
                     @endforeach
 
                 </div>
