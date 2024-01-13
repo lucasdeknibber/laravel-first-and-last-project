@@ -18,9 +18,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
+    Route::resource('faq', FaqController::class);
+    Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.category.create');
+    Route::post('/faq/store-category', 'FaqController@storeCategory')->name('faq.category.store');
+    Route::get('faq/category/{category}/edit', [FaqController::class, 'editCategory'])->name('faq.category.edit');
+    Route::put('faq/category/{category}', [FaqController::class, 'updateCategory'])->name('faq.category.update');
+    Route::delete('faq/category/{category}', [FaqController::class, 'destroyCategory'])->name('faq.category.destroy');
+});
 
 // routes/web.php
-Route::get('/faq', [FaqController::class, 'showFAQ'])->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 
