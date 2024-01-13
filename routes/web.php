@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::resource('faq', FaqController::class);
     Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.category.create');
-    Route::post('/faq/store-category', 'FaqController@storeCategory')->name('faq.category.store');
+    Route::post('/faq/store-category', [FaqController::class, 'storeCategory'])->name('faq.category.store');
     Route::get('faq/category/{category}/edit', [FaqController::class, 'editCategory'])->name('faq.category.edit');
     Route::put('faq/category/{category}', [FaqController::class, 'updateCategory'])->name('faq.category.update');
     Route::delete('faq/category/{category}', [FaqController::class, 'destroyCategory'])->name('faq.category.destroy');
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 });
 
 // routes/web.php
-Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 
