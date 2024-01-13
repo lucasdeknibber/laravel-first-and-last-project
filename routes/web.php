@@ -22,11 +22,10 @@ Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+Route::get('/contact/all', [ContactController::class, 'all'])->name('contact.all');
+
 Route::get('/user/{user}', [UserProfileController::class, 'show'])->name('user.profile');
 Route::post('/user/{user}/promote', [UserProfileController::class, 'promote'])->name('promote.to.admin');
-
-Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('user.profile');
-
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('index');
 

@@ -24,4 +24,9 @@ class ContactController extends Controller
 
         return redirect()->route('contact.form')->with('status', 'Message sent successfully!');
     }
+
+    public function all() {
+        $contacts = Contact::all();
+        return view('contact.all', compact('contacts'));
+    }
 }
