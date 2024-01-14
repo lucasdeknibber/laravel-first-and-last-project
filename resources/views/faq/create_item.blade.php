@@ -15,7 +15,6 @@
                         @csrf
 
                         <input type="hidden" name="faq_category_id" value="{{ $categoryId }}">
-
                         <div class="mb-4">
                             <x-input-label for="question" :value="__('Question')" />
                             <x-text-input id="question" class="block mt-1 w-full" type="text" name="question" :value="old('question')" required autofocus />
@@ -24,9 +23,10 @@
 
                         <div class="mb-4">
                             <x-input-label for="answer" :value="__('Answer')" />
-                            <textarea id="answer" name="answer" rows="6" class="form-input w-full" required>{{ old('answer') }}</textarea>
+                            <textarea id="answer" name="answer" rows="6" class="form-input w-full border border-purple-500 bg-gray-100 dark:bg-gray-700 text-white" style="background-color: #111827;" required>{{ old('answer') }}</textarea>
                             <x-input-error :messages="$errors->get('answer')" class="mt-2" />
                         </div>
+
 
                         <div class="flex items-center justify-end">
                             <x-primary-button>
