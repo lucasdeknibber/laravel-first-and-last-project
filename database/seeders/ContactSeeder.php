@@ -14,8 +14,8 @@ class ContactSeeder extends Seeder
     public function run(): void
     {
         $contact = Contact::create([
-            'name' => 'Test Contact',
-            'email' => 'test@localhost',
+            'name' => 'admin',
+            'email' => 'admin@ehb.be',
             'message' => 'This is a test contact!',
         ]);
         

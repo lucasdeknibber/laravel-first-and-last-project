@@ -18,7 +18,7 @@
                     @foreach ($contacts as $contact)
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <p><strong>{{ __('Name') }}:</strong> {{ $contact->name }}</p>
+                                <p><strong>{{ __('Name') }}:</strong> <a href="{{ route('user.profile', ['user' => $contact->user_id]) }}">{{ $contact->name }}</a></p>
                                 <p><strong>{{ __('Email') }}:</strong> {{ $contact->email }}</p>
                                 <p><strong>{{ __('Message') }}:</strong> {{ $contact->message }}</p>
                                 <p><strong>{{ __('Received at') }}:</strong> {{ $contact->created_at->format('Y/m/d \o\m H:i') }}</p>

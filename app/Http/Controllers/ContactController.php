@@ -15,16 +15,28 @@ class ContactController extends Controller
     public function submitForm(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
         ]);
 
-        Contact::create($request->all());
+        $contactData = [
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
+
+        // Use the authenticated user's name and associate the contact with the user
+        if (auth()->check()) {
+            $contactData['name'] = auth()->user()->name;
+            $contactData['user_id'] = auth()->user()->id;
+        }
+
+        Contact::create($contactData);
 
         return redirect()->route('contact.form')->with('status', 'Message sent successfully!');
     }
 
+    
+    
     public function all() {
         $contacts = Contact::all();
         return view('contact.all', compact('contacts'));
