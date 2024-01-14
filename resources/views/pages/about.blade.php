@@ -9,6 +9,7 @@
                 <li><a href="{{ url('https://www.openai.com/gpt-3/') }}" target="_blank">ChatGPT</a></li>
                 <li><a href="{{ url('https://laravel.com/docs/10.x') }}" target="_blank">Laravel Documentation</a></li>
                 <li><a href="{{ url('https://www.lipsum.com/') }}" target="_blank">Lipsum Generator</a></li>
+                <li><a href="{{ url('https://github.com/lucasdeknibber/laravel-first-and-last-project') }}" target="_blank">github</a></li>
             </ul>
             <!-- Add more sources as needed -->
         </div>
