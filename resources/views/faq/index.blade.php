@@ -64,6 +64,7 @@
                                         {{ __('Delete Question') }}
                                     </button>
                                 </form>
+                                <br>
                                 @endif
                             @endforeach
                         </ul>

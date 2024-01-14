@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             PostSeeder::class,
             ContactSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }
