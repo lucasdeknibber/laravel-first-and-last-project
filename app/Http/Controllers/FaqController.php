@@ -63,4 +63,21 @@ class FaqController extends Controller
 
         return redirect()->route('faq.index')->with('status', 'FAQ category deleted!');
     }
+    public function createItem($categoryId)
+    {
+        return view('faq.create_item', ['categoryId' => $categoryId]);
+    }
+
+    public function storeItem(Request $request)
+    {
+        $validated = $request->validate([
+            'question' => 'required|string',
+            'answer' => 'required|string',
+            'faq_category_id' => 'required|exists:faq_categories,id',
+        ]);
+
+        FaqItem::create($validated);
+
+        return redirect()->route('faq.index')->with('status', 'FAQ item added!');
+    }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware(['auth'])->group(function () {
     Route::resource('faq', FaqController::class);
-    Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.create');
+    Route::get('faq/category/create', [FaqController::class, 'createCategory'])->name('faq.category.create'); // Updated route name
     Route::post('/faq/store-category', [FaqController::class, 'storeCategory'])->name('faq.category.store');
     Route::get('faq/category/{category}/edit', [FaqController::class, 'editCategory'])->name('faq.category.edit');
     Route::put('faq/category/{category}', [FaqController::class, 'updateCategory'])->name('faq.category.update');
@@ -28,7 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 });
 
-// routes/web.php
+Route::get('/faq/{category}/add-item', [FaqController::class, 'createItem'])->name('faq.item.create');
+Route::post('/faq/store-item', [FaqController::class, 'storeItem'])->name('faq.item.store');
 
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 

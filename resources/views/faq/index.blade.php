@@ -32,6 +32,10 @@
                                         {{ __('Delete Category') }}
                                     </button>
                                 </form>
+
+                                <a href="{{ route('faq.item.create', $category->id) }}" class="text-green-500 hover:underline">
+                                    {{ __('Add Question and Answer') }}
+                                </a>
                             </div>
                         </div>
 
