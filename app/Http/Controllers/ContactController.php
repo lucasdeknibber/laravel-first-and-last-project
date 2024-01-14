@@ -37,8 +37,10 @@ class ContactController extends Controller
 
     
     
-    public function all() {
-        $contacts = Contact::all();
+    public function all()
+    {
+        $contacts = Contact::with('user')->get();
         return view('contact.all', compact('contacts'));
     }
+    
 }

@@ -18,8 +18,12 @@ class ContactSeeder extends Seeder
             'email' => 'admin@ehb.be',
             'message' => 'This is a test contact!',
         ]);
+
+        $contact = Contact::create([
+            'name' => 'John Doe',
+            'email' => 'johndoe@email.example',
+            'message' => 'This is a test contact!',
+        ]);
         
-        // 'email',
-        // 'message',
     }
 }

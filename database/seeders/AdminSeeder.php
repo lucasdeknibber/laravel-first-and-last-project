@@ -22,11 +22,14 @@ class AdminSeeder extends Seeder
             'avatar' => '',
             'is_admin' => true,
         ]);
-        // 'name',
-        // 'email',
-        // 'password',
-        // 'birthday',
-        // 'bio',
-        // 'avatar',
+        $regularUser = User::create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'password' => bcrypt('Secret123'),
+            'birthday' => '2000-05-15',
+            'bio' => 'I am a regular user!',
+            'avatar' => '',
+            'is_admin' => false,
+        ]);
     }
 }
