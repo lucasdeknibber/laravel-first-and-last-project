@@ -80,4 +80,11 @@ class FaqController extends Controller
 
         return redirect()->route('faq.index')->with('status', 'FAQ item added!');
     }
+    public function destroyItem($id)
+    {
+        $item = FaqItem::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('faq.index')->with('status', 'FAQ item deleted!');
+    }
 }

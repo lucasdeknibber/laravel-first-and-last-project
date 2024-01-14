@@ -51,6 +51,13 @@
                                     <strong>Q: {{ $item->question }}</strong>
                                     <p>A: {{ $item->answer }}</p>
                                 </li>
+                                <form method="post" action="{{ route('faq.item.destroy', $item->id) }}" class="inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure you want to delete this question?')">
+                                        {{ __('Delete Question') }}
+                                    </button>
+                                </form>
                             @endforeach
                         </ul>
                     @endforeach
