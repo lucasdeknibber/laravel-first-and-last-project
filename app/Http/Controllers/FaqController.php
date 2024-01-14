@@ -87,4 +87,25 @@ class FaqController extends Controller
 
         return redirect()->route('faq.index')->with('status', 'FAQ item deleted!');
     }
+    public function editItem(FaqItem $item)
+{
+    // Add any logic you need before showing the edit form
+    return view('faq.edit_item', compact('item'));
+}
+
+public function updateItem(Request $request, FaqItem $item)
+{
+    // Validate and update the FAQ item
+    $request->validate([
+        'question' => 'required|string',
+        'answer' => 'required|string',
+    ]);
+
+    $item->update([
+        'question' => $request->input('question'),
+        'answer' => $request->input('answer'),
+    ]);
+
+    return redirect()->route('faq.index')->with('status', 'Question updated successfully!');
+}
 }

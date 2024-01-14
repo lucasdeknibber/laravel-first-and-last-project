@@ -50,7 +50,13 @@
                                 <li>
                                     <strong>Q: {{ $item->question }}</strong>
                                     <p>A: {{ $item->answer }}</p>
+                                    <br>
                                 </li>
+                                @if (auth()->user()->is_admin)
+                                <a href="{{ route('faq.item.edit', $item->id) }}" class="text-blue-500 hover:underline">
+                                    {{ __('Edit Question') }}
+                                </a>
+
                                 <form method="post" action="{{ route('faq.item.destroy', $item->id) }}" class="inline">
                                     @csrf
                                     @method('delete')
@@ -58,6 +64,7 @@
                                         {{ __('Delete Question') }}
                                     </button>
                                 </form>
+                                @endif
                             @endforeach
                         </ul>
                     @endforeach

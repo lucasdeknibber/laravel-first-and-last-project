@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('faq/category/{category}', [FaqController::class, 'destroyCategory'])->name('faq.category.destroy');
     Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
     Route::delete('/faq/item/{item}', [FaqController::class, 'destroyItem'])->name('faq.item.destroy');
+    Route::get('/faq/item/{item}/edit', [FaqController::class, 'editItem'])->name('faq.item.edit');
+    Route::put('/faq/item/{item}', [FaqController::class, 'updateItem'])->name('faq.item.update');
 
 });
 Route::get('/faq/{category}/add-item', [FaqController::class, 'createItem'])->name('faq.item.create');
